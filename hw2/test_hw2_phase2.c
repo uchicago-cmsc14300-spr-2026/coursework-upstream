@@ -269,7 +269,7 @@ Test(hw2_connect_rgb_arrays, connect_rgb_arrays05, .timeout=2)
 }
 
 
-Test(hw2_sift_up, sift_up00)
+Test(hw2_sift_up, sift_up00, .timeout=2)
 {
   timestamp dates[] = {20250401000000, 20250101000000, 20250201000000};
   sift_up(dates, 1);
@@ -320,7 +320,7 @@ Test(hw2_sift_up, sift_up03, .timeout=2)
 }
 
 
-Test(hw2_sift_down, sift_down00)
+Test(hw2_sift_down, sift_down00, .timeout=2)
 {
   timestamp dates[] = {20250201000000, 20250202000000, 20250301000000,
     20250203000000, 20250204000000, 20250302000000, 20250303000000,
@@ -448,7 +448,7 @@ Test(hw2_sift_down, sift_down07, .timeout=2)
             dates[7]==20250205000000);
 }
 
-Test(hw2_sift_down, sift_down08)
+Test(hw2_sift_down, sift_down08, .timeout=2)
 {
   timestamp dates[] = {20250201000000, 20250206000000, 20250301000000,
     20250203000000, 20250204000000, 20250302000000, 20250303000000,
@@ -464,7 +464,7 @@ Test(hw2_sift_down, sift_down08)
             dates[7]==20250206000000);
 }
 
-Test(hw2_sift_down, sift_down09)
+Test(hw2_sift_down, sift_down09, .timeout=2)
 {
   timestamp dates[] = {20250201000000, 20250206000000, 20250301000000,
     20250203000000, 20250204000000, 20250302000000, 20250303000000,
@@ -491,7 +491,7 @@ Test(hw2_sift_down, sift_down09)
 }
 
 
-Test(hw2_heapsort_dates, heapsort_dates00)
+Test(hw2_heapsort_dates, heapsort_dates00, .timeout=2)
 {
   timestamp dates[] = {20200101000000, 20180101000000, 20140101000000};
   heapsort_dates(dates,3);
@@ -590,7 +590,7 @@ Test(hw2_heapsort_dates, heapsort_dates07, .timeout=2)
             dates[7]==20280910111213);
 }
 
-Test(hw2_heapsort_dates, heapsort_dates08)
+Test(hw2_heapsort_dates, heapsort_dates08, .timeout=2)
 {
   timestamp dates[] = {20220304050607, 20220304050607, 20220304050607,
                       20220304050607, 20220304050607, 20220304050607,
@@ -607,7 +607,7 @@ Test(hw2_heapsort_dates, heapsort_dates08)
 }
 
 
-Test(hw2_distinct_dates, distinct_dates00)
+Test(hw2_distinct_dates, distinct_dates00, .timeout=2)
 {
   timestamp dates[] = {20240101000000, 20240101000000};
   int n;
@@ -696,7 +696,7 @@ int grading_days_match(timestamp* actual, timestamp* expect, unsigned int len) {
   return 1;
 }
 
-Test(hw2_weekdays, weekdays00)
+Test(hw2_weekdays, weekdays00, .timeout=2)
 {
   int n;
   timestamp *w = weekdays(20250416123456, 20250423123456, &n);
@@ -771,7 +771,7 @@ Test(hw2_weekdays, weekdays07, .timeout=2)
 }
 
 
-Test(hw2_mondays, mondays00)
+Test(hw2_mondays, mondays00, .timeout=2)
 {
   int n;
   timestamp *w = mondays(20250416123456, 20250423123456, &n);
@@ -815,7 +815,7 @@ Test(hw2_mondays, mondays04, .timeout=2)
   free(w);
 }
 
-Test(hw2_primes, primes00)
+Test(hw2_primes, primes00, .timeout=2)
 {
   int n;
   unsigned int a[] = {1,2,3,4,5,6,7,8,9,99};
