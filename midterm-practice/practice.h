@@ -1,4 +1,4 @@
-q#include <stdint.h>
+#include <stdint.h>
 
 // return the distance from the point (x,y) to the perimeter of the circle
 // if the point is on the circle, the distance is 0
