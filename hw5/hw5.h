@@ -179,8 +179,8 @@ move_list *bishop_moves(board b, loc_t loc);
 // must exclude the shadow realm (see rules)
 // must stay on the border (see sentry rules)
 // ERROR if the location is unoccupied
-// ERROR if the location is occupied by a non-bishop
-// ERROR if the bishop's color does not match whose turn
+// ERROR if the location is occupied by a non-sentry
+// ERROR if the sentry's color does not match whose turn
 // moves can appear in any order in the result
 move_list *sentry_moves(board b, loc_t loc);
 
@@ -189,8 +189,8 @@ move_list *sentry_moves(board b, loc_t loc);
 // precondition: the queen's color matches whose turn
 // must exclude the shadow realm (see rules)
 // ERROR if the location is unoccupied
-// ERROR if the location is occupied by a non-bishop
-// ERROR if the bishop's color does not match whose turn
+// ERROR if the location is occupied by a non-queen
+// ERROR if the queen's color does not match whose turn
 // moves can appear in any order in the result
 move_list *queen_moves(board b, loc_t loc);
 
