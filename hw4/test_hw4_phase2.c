@@ -324,8 +324,14 @@ Test(hw4_split_at, split_at_02, .timeout=2)
 
 Test(hw4_split_at, split_at_03, .timeout=2)
 {
+  // we decided to allow either of two answers for this test:
+  // - the empty list
+  // - the list containing ""
   str_list *strings = split_at("",'/');
-  cr_assert(!strings);
+  str_list *expected = p2cs("");
+  cr_assert(!strings || str_list_same(strings,expected));
+  p2f(expected);
+  p2f(strings);
 }
 
 Test(hw4_split_at, split_at_04, .timeout=2)
