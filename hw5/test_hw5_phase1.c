@@ -1,6 +1,7 @@
 #include <criterion/criterion.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include "locations.h"
 #include "hw5.h"
 
