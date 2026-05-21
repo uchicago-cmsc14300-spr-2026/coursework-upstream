@@ -690,6 +690,8 @@ Test(hw5_bishop_moves, bishop_moves_02, .timeout=2)
 Test(hw5_bishop_moves, bishop_moves_03, .timeout=2)
 {
   board b = board_new();
+  b.white_sentry = LOC_a2;
+  b.whose_turn   = COLOR_black;
   move_list *moves = bishop_moves(b,LOC_e6);
   move_list *expected = p2_ml(4,
     LOC_e6,LOC_c8,
@@ -704,6 +706,8 @@ Test(hw5_bishop_moves, bishop_moves_03, .timeout=2)
 Test(hw5_bishop_moves, bishop_moves_04, .timeout=2)
 {
   board b = board_new();
+  b.white_sentry = LOC_a2;
+  b.whose_turn   = COLOR_black;
   move_list *moves = bishop_moves(b,LOC_f6);
   move_list *expected = p2_ml(3,
     LOC_f6,LOC_d8,
@@ -742,6 +746,8 @@ Test(hw5_sentry_moves, sentry_moves_01, .timeout=2)
 Test(hw5_sentry_moves, sentry_moves_02, .timeout=2)
 {
   board b = board_new();
+  b.white_sentry = LOC_a2;
+  b.whose_turn = COLOR_black;
   move_list *moves = sentry_moves(b,LOC_h8);
   move_list *expected = p2_ml(7,
     LOC_h8,LOC_a8,
@@ -781,6 +787,8 @@ Test(hw5_queen_moves, queen_moves_01, .timeout=2)
 Test(hw5_queen_moves, queen_moves_02, .timeout=2)
 {
   board b = board_new();
+  b.white_sentry = LOC_a2;
+  b.whose_turn = COLOR_black;
   move_list *moves = queen_moves(b,LOC_g6);
   move_list *expected = p2_ml(4,
     LOC_g6,LOC_e8,
