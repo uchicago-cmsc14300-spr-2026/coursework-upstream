@@ -505,9 +505,9 @@ void board_show(board b)
 
 color_t winner(board b)
 {
-  if (!b.black_envoy || piece_at(b,LOC_h6)==PIECE_ws)
+  if (!b.black_envoy || piece_at(b,LOC_h6)==PIECE_we)
     return COLOR_white;
-  else if (!b.white_envoy || piece_at(b,LOC_c1)==PIECE_bs)
+  else if (!b.white_envoy || piece_at(b,LOC_c1)==PIECE_be)
     return COLOR_black;
   else
     return COLOR_none;  
