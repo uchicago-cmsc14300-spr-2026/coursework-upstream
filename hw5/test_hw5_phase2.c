@@ -5,7 +5,7 @@
 #include "locations.h"
 #include "hw5.h"
 
-// ======== helper
+// ======== helpers
 
 int p2_move_lt(move m1, move m2)
 {
@@ -119,6 +119,23 @@ move_list *p2_ml(int n_locs, ...)
   }
   va_end(args);
   return moves;
+}
+
+board p2_board_new()
+{
+  board b;
+  b.white_envoy  = LOC_c1;
+  b.white_queen  = LOC_c2;
+  b.white_bishop = (LOC_c3|LOC_c4);
+  b.white_knight = LOC_b1;
+  b.white_sentry = LOC_a1;
+  b.black_envoy  = LOC_h6;
+  b.black_queen  = LOC_g6;
+  b.black_bishop = (LOC_f6|LOC_e6);
+  b.black_knight = LOC_h7;
+  b.black_sentry = LOC_h8;
+  b.whose_turn = COLOR_white;
+  return b;
 }
 
 // ======== tests
@@ -381,7 +398,7 @@ Test(hw5_pieces_white, pieces_white_00, .timeout=2)
 
 Test(hw5_pieces_white, pieces_white_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   loc_t expected = LOC_a1|LOC_b1|LOC_c1|LOC_c2|LOC_c3|LOC_c4;
   cr_assert(pieces_white(b)==expected);
 }
@@ -394,7 +411,7 @@ Test(hw5_pieces_black, pieces_black_00, .timeout=2)
 
 Test(hw5_pieces_black, pieces_black_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   loc_t expected = LOC_h8|LOC_h7|LOC_h6|LOC_g6|LOC_f6|LOC_e6;
   cr_assert(pieces_black(b)==expected);
 }
@@ -407,7 +424,7 @@ Test(hw5_pieces_all, pieces_all_00, .timeout=2)
 
 Test(hw5_pieces_all, pieces_all_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   loc_t expected = LOC_h8|LOC_h7|LOC_h6|LOC_g6|LOC_f6|LOC_e6|
                    LOC_a1|LOC_b1|LOC_c1|LOC_c2|LOC_c3|LOC_c4;
   cr_assert(pieces_all(b)==expected);
@@ -451,43 +468,43 @@ Test(hw5_is_occupied, is_occupied_00, .timeout=2)
 
 Test(hw5_is_occupied, is_occupied_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(is_occupied(b,LOC_c1));
 }
 
 Test(hw5_is_occupied, is_occupied_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(!is_occupied(b,LOC_b2));
 }
 
 Test(hw5_is_occupied, is_occupied_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(is_occupied(b,LOC_h7));
 }
 
 Test(hw5_is_unoccupied, is_unoccupied_00, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(is_unoccupied(b,LOC_g8));
 }
 
 Test(hw5_is_unoccupied, is_unoccupied_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(!is_unoccupied(b,LOC_h8));
 }
 
 Test(hw5_is_unoccupied, is_unoccupied_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(is_unoccupied(b,LOC_a4));
 }
 
 Test(hw5_is_unoccupied, is_unoccupied_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(!is_unoccupied(b,LOC_c2));
 }
 
@@ -544,31 +561,31 @@ Test(hw5_piece_at, piece_at_00, .timeout=2)
 
 Test(hw5_piece_at, piece_at_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(piece_at(b,LOC_c3)==PIECE_wb);
 }
 
 Test(hw5_piece_at, piece_at_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(piece_at(b,LOC_h6)==PIECE_be);
 }
 
 Test(hw5_piece_at, piece_at_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(piece_at(b,LOC_g6)==PIECE_bq);
 }
 
 Test(hw5_piece_at, piece_at_04, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(piece_at(b,LOC_c3)==PIECE_wb);
 }
 
 Test(hw5_piece_at, piece_at_05, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(piece_at(b,LOC_f2)==PIECE_none);
 }
 
@@ -580,31 +597,31 @@ Test(hw5_color_at, color_at_00, .timeout=2)
 
 Test(hw5_color_at, color_at_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(color_at(b,LOC_c4)==COLOR_white);
 }
 
  Test(hw5_color_at, color_at_02, .timeout=2)
  {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(color_at(b,LOC_c1)==COLOR_white);
 }
 
 Test(hw5_color_at, color_at_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(color_at(b,LOC_h6)==COLOR_black);
 }
 
 Test(hw5_color_at, color_at_04, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(color_at(b,LOC_e6)==COLOR_black);
 }
 
  Test(hw5_color_at, color_at_05, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(color_at(b,LOC_h3)==COLOR_none);
 }
 
@@ -640,14 +657,14 @@ Test(hw5_unconditionally_put_piece, unconditionally_put_piece_00, .timeout=2)
 
 Test(hw5_unconditionally_put_piece, unconditionally_put_piece_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_c1,PIECE_wq);
   cr_assert(b.white_queen==(LOC_c1|LOC_c2) && !b.white_envoy);
 }
 
 Test(hw5_unconditionally_put_piece, unconditionally_put_piece_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_d6,PIECE_bk);
   cr_assert(b.black_knight==(LOC_h7|LOC_d6));
 }
@@ -662,7 +679,7 @@ Test(hw5_bishop_moves, bishop_moves_00, .timeout=2)
 
 Test(hw5_bishop_moves, bishop_moves_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   move_list *moves = bishop_moves(b,LOC_c4);
   move_list *expected = p2_ml(4,
     LOC_c4,LOC_a2,
@@ -676,7 +693,7 @@ Test(hw5_bishop_moves, bishop_moves_01, .timeout=2)
 
 Test(hw5_bishop_moves, bishop_moves_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   move_list *moves = bishop_moves(b,LOC_c3);
   move_list *expected = p2_ml(3,
     LOC_c3,LOC_a5,
@@ -689,7 +706,7 @@ Test(hw5_bishop_moves, bishop_moves_02, .timeout=2)
 
 Test(hw5_bishop_moves, bishop_moves_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_sentry = LOC_a2;
   b.whose_turn   = COLOR_black;
   move_list *moves = bishop_moves(b,LOC_e6);
@@ -705,7 +722,7 @@ Test(hw5_bishop_moves, bishop_moves_03, .timeout=2)
 
 Test(hw5_bishop_moves, bishop_moves_04, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_sentry = LOC_a2;
   b.whose_turn   = COLOR_black;
   move_list *moves = bishop_moves(b,LOC_f6);
@@ -728,7 +745,7 @@ Test(hw5_sentry_moves, sentry_moves_00, .timeout=2)
 
 Test(hw5_sentry_moves, sentry_moves_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   move_list *moves = sentry_moves(b,LOC_a1);
   move_list *expected = p2_ml(7,
     LOC_a1,LOC_a2,
@@ -745,7 +762,7 @@ Test(hw5_sentry_moves, sentry_moves_01, .timeout=2)
 
 Test(hw5_sentry_moves, sentry_moves_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_sentry = LOC_a2;
   b.whose_turn = COLOR_black;
   move_list *moves = sentry_moves(b,LOC_h8);
@@ -772,7 +789,7 @@ Test(hw5_queen_moves, queen_moves_00, .timeout=2)
 
 Test(hw5_queen_moves, queen_moves_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   move_list *moves = queen_moves(b,LOC_c2);
   move_list *expected = p2_ml(4,
     LOC_c2,LOC_a2,
@@ -786,7 +803,7 @@ Test(hw5_queen_moves, queen_moves_01, .timeout=2)
 
 Test(hw5_queen_moves, queen_moves_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_sentry = LOC_a2;
   b.whose_turn = COLOR_black;
   move_list *moves = queen_moves(b,LOC_g6);
@@ -802,48 +819,48 @@ Test(hw5_queen_moves, queen_moves_02, .timeout=2)
 
 Test(hw5_winner, winner_00, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   cr_assert(winner(b)==COLOR_none);
 }
 
 Test(hw5_winner, winner_01, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_envoy = 0;
   cr_assert(winner(b)==COLOR_black);
 }
 
 Test(hw5_winner, winner_02, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.black_envoy = 0;
   cr_assert(winner(b)==COLOR_white);
 }
 
 Test(hw5_winner, winner_03, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_h6,PIECE_we);  
   cr_assert(winner(b)==COLOR_white);
 }
 
 Test(hw5_winner, winner_04, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_c1,PIECE_be);  
   cr_assert(winner(b)==COLOR_black);
 }
 
 Test(hw5_winner, winner_05, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   b.white_queen = LOC_b3;
   cr_assert(winner(b)==COLOR_none);
 }
 
 Test(hw5_winner, winner_06, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_a1,PIECE_be);
   unconditionally_put_piece(&b,LOC_h8,PIECE_we);
   cr_assert(winner(b)==COLOR_none);
@@ -851,7 +868,7 @@ Test(hw5_winner, winner_06, .timeout=2)
 
 Test(hw5_winner, winner_07, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_a1,PIECE_be);
   unconditionally_put_piece(&b,LOC_h6,PIECE_we);
   cr_assert(winner(b)==COLOR_white);
@@ -859,7 +876,7 @@ Test(hw5_winner, winner_07, .timeout=2)
 
 Test(hw5_winner, winner_08, .timeout=2)
 {
-  board b = board_new();
+  board b = p2_board_new();
   unconditionally_put_piece(&b,LOC_h8,PIECE_we);
   unconditionally_put_piece(&b,LOC_c1,PIECE_be);
   cr_assert(winner(b)==COLOR_black);
