@@ -59,7 +59,7 @@ loc_t loc_plus(loc_t loc, int df, int dr)
   char newfile = file(loc) + df;
   int  newrank = rank(loc) + dr;
   if ('a'<=newfile && newfile<='h' && 1<=newrank && newrank<=8) {
-    uint8_t offset = ((newrank-'1')*8) + (newfile-'a');
+    uint8_t offset = ((newrank-1)*8) + (newfile-'a');
     loc_t r = 0X01;
     return (r<<offset);
   }
