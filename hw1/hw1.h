@@ -1,6 +1,7 @@
 // hw1.h, CS143, Spring 2026
 
 #ifndef __HW1_H__
+#define __HW1_H__
 
 #include <stdint.h>
 #include <math.h>
